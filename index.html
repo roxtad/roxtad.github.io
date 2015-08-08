@@ -2,7 +2,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<TITLE>Property-Riks</TITLE>
+<TITLE>Property-Risk</TITLE>
+  <script type="text/javascript">
+      function validateFormOnSubmit(theForm) {
+        var reason = "";
+
+          reason += validateEmpty(theForm.address);
+          reason += validateEmpty(theForm.postal_code);
+          reason += validateEmpty(theForm.city);
+          reason += validateEmpty(theForm.state);
+
+              
+          if (reason != "") {
+            alert("All fields should be fulfilled!");
+            return false;
+          }
+
+          return true;
+        }
+
+      function validateEmpty(fld) {
+        var error = "";
+      
+        if (fld.value.length == 0) {
+            fld.style.background = 'Yellow'; 
+            error = "The required field has not been filled in.\n"
+        } else {
+            fld.style.background = 'White';
+        }
+        return error;   
+        }
+
+  </script>
+
+
+
+
+
  <table style="width:100%">
   <tr>
     <td><img src="/assets/viewlogo.jpg"></td>
@@ -24,7 +60,9 @@
   </table> 
 </head>
 <body>
-
+<%= link_to("Areas (AdminAccess)", {:action => 'show_areas'}, :class => 'back-link') %></br>
+<%= link_to("Properties (AdminAccess)", {:action => 'show_properties'}, :class => 'back-link') %></br>
+<%= link_to("New Risk (AdminAccess)", {:action => 'new_risk'}, :class => 'back-link') %>
 
 <table style="height:100%" cellspacing="20" cellpadding="0" border="0" margin-top="50">
   <tr>
@@ -34,32 +72,58 @@
   </table></td>
 
 
- <table style="height:100%"  cellspacing="8" cellpadding="8" border="3" margin-top="20">
+ <table style= "height:100%" cellspacing="8" cellpadding="8" border="3" margin-top="20">
   <tr>
     <td><h3 style=text-align:center>Searching by Field</h3></td>
     <td><h3 style=text-align:center>Searching by Map</h3></td>
       </tr>
   <tr>
-    <td> <table class="listing" summary="Page list">
-    <tr class="header">
-      <th>ID</th>
-      <th>Postal Code</th>
-      <th>City</th>
-      <th>State</th>
-    </tr>
-    
-  </table></td>
-    <td><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22624987.23803149!2d-95.665!3d37.599999999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUSA!5e1!3m2!1sda!2sdk!4v1435374718358" width="500" height="300" frameborder="0" style="border:0" allowfullscreen></iframe></td>
+    <td> 
+  <%= form_tag("/main/search", method: "get", :onsubmit => "return validateFormOnSubmit(this)") do %>
 
-           
+    <table class="listing" summary="Page list">
+
+      <tr>
+      <th>Address</th>
+      <td><%= text_field_tag(:address) %></td></tr>
+        
+       <tr>
+       <th>Postal Code</th>
+        <td><%= text_field_tag(:postal_code) %></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td><%= text_field_tag(:city) %></td>
+      </tr>
+      <tr>
+        <th>State</th>
+        <td><%= text_field_tag(:state) %></td>
+      </tr>
+    
+       
+
+    
+  </table>
+    <div style="text-align:center">
+      <%= image_submit_tag("images.jpg") %>
+    </div>
+  <% end %>
+    </td>
+
+
+    <td style="weight:50%">
+  
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25895663.485556163!2d-95.665!3d37.6!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUSA!5e0!3m2!1sda!2sdk!4v1435501729360" width="450" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</td>
       
+
     </tr>
 
 </table> 
 
-<div id="search">
+<!--div id="search">
 <input style="padding-left:10cm" name="" type="image" src="/assets/images.jpeg" />
-</div>
+</div-->
 
     <div style="clear:both"></div>
 <table style="height:100%" cellspacing="20" cellpadding="0" border="0" margin-top="100">
@@ -81,3 +145,9 @@
  
 </body>
 </html>
+
+
+
+
+
+
