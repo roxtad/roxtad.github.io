@@ -60,9 +60,6 @@
   </table> 
 </head>
 <body>
-<%= link_to("Areas (AdminAccess)", {:action => 'show_areas'}, :class => 'back-link') %></br>
-<%= link_to("Properties (AdminAccess)", {:action => 'show_properties'}, :class => 'back-link') %></br>
-<%= link_to("New Risk (AdminAccess)", {:action => 'new_risk'}, :class => 'back-link') %>
 
 <table style="height:100%" cellspacing="20" cellpadding="0" border="0" margin-top="50">
   <tr>
@@ -83,23 +80,7 @@
 
     <table class="listing" summary="Page list">
 
-      <tr>
-      <th>Address</th>
-      <td><%= text_field_tag(:address) %></td></tr>
-        
-       <tr>
-       <th>Postal Code</th>
-        <td><%= text_field_tag(:postal_code) %></td>
-      </tr>
-      <tr>
-        <th>City</th>
-        <td><%= text_field_tag(:city) %></td>
-      </tr>
-      <tr>
-        <th>State</th>
-        <td><%= text_field_tag(:state) %></td>
-      </tr>
-    
+     
        
 
     
